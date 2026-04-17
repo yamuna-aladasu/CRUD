@@ -1,6 +1,7 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.viewsets import ModelViewSet
 from rest_framework.parsers import MultiPartParser, FormParser
 from django.shortcuts import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
@@ -50,4 +51,6 @@ class Productpartialupdate(APIView):
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
     
-
+class Productview(ModelViewSet):
+    queryset=Product.objects.all()
+    serializer_class=Productserializer
